@@ -28,7 +28,7 @@ set cpo&vim
 " 1. Variables {{{1
 " ============
 
-let s:js_keywords = '^\s*\(break\|case\|catch\|continue\|debugger\|default\|delete\|do\|else\|finally\|for\|function\|if\|in\|instanceof\|new\|return\|switch\|this\|throw\|try\|typeof\|var\|void\|while\|with\)'
+let s:js_keywords = '^\s*\(break\|case\|catch\|continue\|debugger\|default\|delete\|do\|else\|finally\|for\|func\|if\|in\|instanceof\|new\|return\|switch\|this\|throw\|try\|typeof\|var\|void\|while\|with\)'
 
 " Regex of syntax group names that are or delimit string or are comments.
 let s:syng_strcom = 'string\|regex\|comment\c'

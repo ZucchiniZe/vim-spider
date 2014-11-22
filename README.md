@@ -1,6 +1,6 @@
-# vim-javascript v0.9.0
+# vim-spider v0.9.0
 
-JavaScript bundle for vim, this bundle provides syntax and indent plugins.
+spider bundle for vim, this bundle provides syntax and indent plugins.
 
 ## A Quick Note on Regexes
 
@@ -26,7 +26,7 @@ then simply perform the following commands to fix your current buffer:
 
 Add to vimrc:
 
-    Bundle "pangloss/vim-javascript"
+    Bundle "pangloss/vim-spider"
 
 And install it:
 
@@ -36,32 +36,32 @@ And install it:
 ### Install with [pathogen](https://github.com/tpope/vim-pathogen)
 
       cd ~/.vim/bundle
-      git clone https://github.com/pangloss/vim-javascript.git
+      git clone https://github.com/pangloss/vim-spider.git
 
 ## Configuration
 
 The following variables control certain syntax highlighting features. You can
 add them to your `.vimrc` to enable/disable their features.
 
-#### javascript_enable_domhtmlcss
+#### spider_enable_domhtmlcss
 
-Enables HTML/CSS syntax highlighting in your JavaScript file.
+Enables HTML/CSS syntax highlighting in your spider file.
 
 Default Value: 0
 
-#### b:javascript_fold
+#### b:spider_fold
 
-Enables JavaScript code folding.
+Enables spider code folding.
 
 Default Value: 1
 
-#### g:javascript_conceal
+#### g:spider_conceal
 
 Enables concealing characters. For example, `function` is replaced with `ƒ`
 
 Default Value: 0
 
-#### javascript_ignore_javaScriptdoc
+#### spider_ignore_spiderdoc
 
 Disables JSDoc syntax highlighting
 
@@ -79,4 +79,4 @@ proposed change and how it is valuable.
 
 ## Bug report
 
-Report a bug on [GitHub Issues](https://github.com/pangloss/vim-javascript/issues).
+Report a bug on [GitHub Issues](https://github.com/pangloss/vim-spider/issues).
