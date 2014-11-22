@@ -97,7 +97,7 @@ syntax match   spNumber          /\<-\=\d\+L\=\>\|\<0[xX]\x\+\>/
 syntax keyword spNumber          Infinity
 syntax match   spFloat           /\<-\=\%(\d\+\.\d\+\|\d\+\.\|\.\d\+\)\%([eE][+-]\=\d\+\)\=\>/
 syntax match   spObjectKey       /\<[a-zA-Z_$][0-9a-zA-Z_$]*\(\s*:\)\@=/ contains=spFunctionKey contained
-syntax match   spFunctionKey     /\<[a-zA-Z_$][0-9a-zA-Z_$]*\(\s*:\s*func\s*\|\s*->\s*\)\@=/ contained
+syntax match   spFunctionKey     /\<[a-zA-Z_$][0-9a-zA-Z_$]*\(\s*:\s*func\s*\|\s*->\s*\|\s*=>\s*\)\@=/ contained
 
 if g:spidersript_conceal == 1
   syntax keyword spNull           null conceal cchar=ø
@@ -214,7 +214,7 @@ syntax match   spFuncArgCommas  contained ','
 syntax match   spFuncArgRest    contained /\%(\.\.\.[a-zA-Z_$][0-9a-zA-Z_$]*\))/
 syntax keyword spArgsObj        arguments contained containedin=spFuncBlock
 
-syntax match spArrowFunction /->/
+syntax match spArrowFunction /(->|=>)/
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
