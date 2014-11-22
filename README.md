@@ -2,6 +2,10 @@
 
 spider bundle for vim, this bundle provides syntax and indent plugins.
 
+## Here it is in action
+
+![Screenshot of Vim Spider](https://cldup.com/dcCAV-nBgL-2000x2000.png)
+
 ## A Quick Note on Regexes
 
 Vim 7.4 was released recently, and unfortunately broke how this plugin
