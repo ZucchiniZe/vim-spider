@@ -26,7 +26,7 @@ then simply perform the following commands to fix your current buffer:
 
 Add to vimrc:
 
-    Bundle "pangloss/vim-spider"
+    Bundle "ZucchiniZe/vim-spider"
 
 And install it:
 
@@ -36,7 +36,7 @@ And install it:
 ### Install with [pathogen](https://github.com/tpope/vim-pathogen)
 
       cd ~/.vim/bundle
-      git clone https://github.com/pangloss/vim-spider.git
+      git clone https://github.com/ZucchiniZe/vim-spider.git
 
 ## Configuration
 
@@ -57,7 +57,7 @@ Default Value: 1
 
 #### g:spider_conceal
 
-Enables concealing characters. For example, `function` is replaced with `ƒ`
+Enables concealing characters. For example, `func` is replaced with `ƒ`
 
 Default Value: 0
 
@@ -67,16 +67,6 @@ Disables JSDoc syntax highlighting
 
 Default Value: 0
 
-## Contributing
-
-This project uses the [git
-flow](http://nvie.com/posts/a-successful-git-branching-model/) model for
-development. There's [a handy git module for git
-flow](//github.com/nvie/gitflow). If you'd like to be added as a contributor,
-the price of admission is 1 pull request. Please follow the general code style
-guides (read the code) and in your pull request explain the reason for the
-proposed change and how it is valuable.
-
 ## Bug report
 
-Report a bug on [GitHub Issues](https://github.com/pangloss/vim-spider/issues).
+Report a bug on [GitHub Issues](https://github.com/ZucchiniZe/vim-spider/issues).
