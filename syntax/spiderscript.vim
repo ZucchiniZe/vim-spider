@@ -1,5 +1,5 @@
 " Vim syntax file
-" " Language: Spiderscript
+" " Language: Spider
 " " Maintainer: Alex Bierwagen
 " " Latest Revisions: November 22 2014
 
@@ -9,7 +9,7 @@ if !exists("main_syntax")
   elseif exists("b:current_syntax")
     finish
   endif
-  let main_syntax = 'spiderscript'
+  let main_syntax = 'spider'
 endif
 
 if !exists('g:spidersript_conceal')

@@ -1,8 +1,8 @@
-au BufNewFile,BufRead *.spider setf spiderscript
+au BufNewFile,BufRead *.spider setf spider
 
-fun! s:SelectSpiderscript()
+fun! s:SelectSpider()
   if getline(1) =~# '^#!.*/bin/env\s\+spider\>'
-    set ft=spiderscript
+    set ft=spider
   endif
 endfun
-au BufNewFile,BufRead * call s:SelectSpiderscript()
+au BufNewFile,BufRead * call s:SelectSpider()
