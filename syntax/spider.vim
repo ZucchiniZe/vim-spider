@@ -63,7 +63,7 @@ if !exists("spidersript_ignore_spidersriptdoc")
   " tags containing references
   syntax match  spDocTags         contained "@\(lends\|see\|tutorial\)\>" nextgroup=spDocSeeTag skipwhite
   " other tags (no extra syntax)
-  syntax match  spDocTags         contained "@\(abstract\|access\|author\|classdesc\|constant\|const\|constructor\|copyright\|deprecated\|desc\|description\|event\|example\|file[oO]verview\|func\|global\|ignore\|inner\|instance\|license\|method\|mixin\|overview\|private\|protected\|public\|readonly\|since\|static\|todo\|summary\|undocumented\|virtual\)\>"
+  syntax match  spDocTags         contained "@\(abstract\|access\|author\|classdesc\|constant\|const\|constructor\|copyright\|deprecated\|desc\|description\|event\|example\|file[oO]verview\|fn\|global\|ignore\|inner\|instance\|license\|method\|mixin\|overview\|private\|protected\|public\|readonly\|since\|static\|todo\|summary\|undocumented\|virtual\)\>"
 
   syntax region spDocType         start="{" end="}" oneline contained nextgroup=spDocParam skipwhite
   syntax match  spDocType         contained "\%(#\|\"\|\w\|\.\|:\|\/\)\+" nextgroup=spDocParam skipwhite
@@ -78,7 +78,7 @@ endif   "" spDoc end
 syntax case match
 
 "" Syntax in the spidersript code
-syntax match   spFuncCall        /\k\+\%(\s*(\)\@=/
+syntax match   spfnCall        /\k\+\%(\s*(\)\@=/
 syntax match   spSpecial         "\v\\%(0|\\x\x\{2\}\|\\u\x\{4\}\|\c[A-Z]|.)" contained
 syntax match   spTemplateVar     "\${.\{-}}" contained
 syntax region  spStringD         start=+"+  skip=+\\\\\|\\$"+  end=+"+  contains=spSpecial,@htmlPreproc,@Spell
@@ -96,8 +96,8 @@ syntax region  spRegexpString    start=+\(\(\(return\|case\)\s\+\)\@<=\|\(\([)\]
 syntax match   spNumber          /\<-\=\d\+L\=\>\|\<0[xX]\x\+\>/
 syntax keyword spNumber          Infinity
 syntax match   spFloat           /\<-\=\%(\d\+\.\d\+\|\d\+\.\|\.\d\+\)\%([eE][+-]\=\d\+\)\=\>/
-syntax match   spObjectKey       /\<[a-zA-Z_$][0-9a-zA-Z_$]*\(\s*:\)\@=/ contains=spFunctionKey contained
-syntax match   spFunctionKey     /\<[a-zA-Z_$][0-9a-zA-Z_$]*\(\s*:\s*func\s*\|\s*->\s*\|\s*=>\s*\)\@=/ contained
+syntax match   spObjectKey       /\<[a-zA-Z_$][0-9a-zA-Z_$]*\(\s*:\)\@=/ contains=spfntionKey contained
+syntax match   spfntionKey     /\<[a-zA-Z_$][0-9a-zA-Z_$]*\(\s*:\s*fn\s*\|\s*->\s*\|\s*=>\s*\)\@=/ contained
 
 if g:spidersript_conceal == 1
   syntax keyword spNull           null conceal cchar=ø
@@ -123,7 +123,7 @@ syntax keyword spLabel          case default
 syntax keyword spKeyword        yield
 syntax keyword spException      try catch throw finally
 
-syntax keyword spGlobalObjects   Array Boolean Date Function Iterator Number Object RegExp String Proxy ParallelArray ArrayBuffer DataView Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray Intl spON Math console document window
+syntax keyword spGlobalObjects   Array Boolean Date fntion Iterator Number Object RegExp String Proxy ParallelArray ArrayBuffer DataView Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray Intl spON Math console document window
 syntax match   spGlobalObjects  /\%(Intl\.\)\@<=\(Collator\|DateTimeFormat\|NumberFormat\)/
 
 syntax keyword spExceptions     Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError
@@ -154,10 +154,10 @@ if exists("spidersript_enable_domhtmlcss")
 
     " DOM2 things
     syntax match spDomElemAttrs     contained /\%(nodeName\|nodeValue\|nodeType\|parentNode\|childNodes\|firstChild\|lastChild\|previousSibling\|nextSibling\|attributes\|ownerDocument\|namespaceURI\|prefix\|localName\|tagName\)\>/
-    syntax match spDomElemFuncs     contained /\%(insertBefore\|replaceChild\|removeChild\|appendChild\|hasChildNodes\|cloneNode\|normalize\|isSupported\|hasAttributes\|getAttribute\|setAttribute\|removeAttribute\|getAttributeNode\|setAttributeNode\|removeAttributeNode\|getElementsByTagName\|getAttributeNS\|setAttributeNS\|removeAttributeNS\|getAttributeNodeNS\|setAttributeNodeNS\|getElementsByTagNameNS\|hasAttribute\|hasAttributeNS\)\>/ nextgroup=spParen skipwhite
+    syntax match spDomElemfns     contained /\%(insertBefore\|replaceChild\|removeChild\|appendChild\|hasChildNodes\|cloneNode\|normalize\|isSupported\|hasAttributes\|getAttribute\|setAttribute\|removeAttribute\|getAttributeNode\|setAttributeNode\|removeAttributeNode\|getElementsByTagName\|getAttributeNS\|setAttributeNS\|removeAttributeNS\|getAttributeNodeNS\|setAttributeNodeNS\|getElementsByTagNameNS\|hasAttribute\|hasAttributeNS\)\>/ nextgroup=spParen skipwhite
     " HTML things
     syntax match spHtmlElemAttrs    contained /\%(className\|clientHeight\|clientLeft\|clientTop\|clientWidth\|dir\|id\|innerHTML\|lang\|length\|offsetHeight\|offsetLeft\|offsetParent\|offsetTop\|offsetWidth\|scrollHeight\|scrollLeft\|scrollTop\|scrollWidth\|style\|tabIndex\|title\)\>/
-    syntax match spHtmlElemFuncs    contained /\%(blur\|click\|focus\|scrollIntoView\|addEventListener\|dispatchEvent\|removeEventListener\|item\)\>/ nextgroup=spParen skipwhite
+    syntax match spHtmlElemfns    contained /\%(blur\|click\|focus\|scrollIntoView\|addEventListener\|dispatchEvent\|removeEventListener\|item\)\>/ nextgroup=spParen skipwhite
 
     " CSS Styles in spidersript
     syntax keyword spCssStyles      contained color font fontFamily fontSize fontSizeAdjust fontStretch fontStyle fontVariant fontWeight letterSpacing lineBreak lineHeight quotes rubyAlign rubyOverhang rubyPosition
@@ -173,7 +173,7 @@ if exists("spidersript_enable_domhtmlcss")
     syntax keyword spCssStyles      contained scrollbar3dLightColor scrollbarArrowColor scrollbarBaseColor scrollbarDarkShadowColor scrollbarFaceColor scrollbarHighlightColor scrollbarShadowColor scrollbarTrackColor
 
     " Highlight ways
-    syntax match spDotNotation      "\." nextgroup=spPrototype,spDomElemAttrs,spDomElemFuncs,spHtmlElemAttrs,spHtmlElemFuncs
+    syntax match spDotNotation      "\." nextgroup=spPrototype,spDomElemAttrs,spDomElemfns,spHtmlElemAttrs,spHtmlElemfns
     syntax match spDotNotation      "\.style\." nextgroup=spCssStyles
 
 endif "DOM/HTML/CSS
@@ -182,12 +182,12 @@ endif "DOM/HTML/CSS
 
 
 "" Code blocks
-syntax cluster spExpression contains=spComment,spLineComment,spDocComment,spTemplateString,spStringD,spStringS,spRegexpString,spNumber,spFloat,spThis,spOperator,spBooleanTrue,spBooleanFalse,spNull,spFunction,spArrowFunction,spGlobalObjects,spExceptions,spFutureKeys,spDomErrNo,spDomNodeConsts,spHtmlEvents,spDotNotation,spBracket,spParen,spBlock,spFuncCall,spUndefined,spNan,spKeyword,spStorageClass,spPrototype,spBuiltins,spNoise
+syntax cluster spExpression contains=spComment,spLineComment,spDocComment,spTemplateString,spStringD,spStringS,spRegexpString,spNumber,spFloat,spThis,spOperator,spBooleanTrue,spBooleanFalse,spNull,spfntion,spArrowfntion,spGlobalObjects,spExceptions,spFutureKeys,spDomErrNo,spDomNodeConsts,spHtmlEvents,spDotNotation,spBracket,spParen,spBlock,spfnCall,spUndefined,spNan,spKeyword,spStorageClass,spPrototype,spBuiltins,spNoise
 syntax cluster spAll        contains=@spExpression,spLabel,spConditional,spRepeat,spReturn,spStatement,spTernaryIf,spException
 syntax region  spBracket    matchgroup=spBrackets     start="\[" end="\]" contains=@spAll,spParensErrB,spParensErrC,spBracket,spParen,spBlock,@htmlPreproc fold
 syntax region  spParen      matchgroup=spParens       start="("  end=")"  contains=@spAll,spParensErrA,spParensErrC,spParen,spBracket,spBlock,@htmlPreproc fold
 syntax region  spBlock      matchgroup=spBraces       start="{"  end="}"  contains=@spAll,spParensErrA,spParensErrB,spParen,spBracket,spBlock,spObjectKey,@htmlPreproc fold
-syntax region  spFuncBlock  matchgroup=spFuncBraces   start="{"  end="}"  contains=@spAll,spParensErrA,spParensErrB,spParen,spBracket,spBlock,@htmlPreproc contained fold
+syntax region  spfnBlock  matchgroup=spfnBraces   start="{"  end="}"  contains=@spAll,spParensErrA,spParensErrB,spParen,spBracket,spBlock,@htmlPreproc contained fold
 syntax region  spTernaryIf  matchgroup=spTernaryIfOperator start=+?+  end=+:+  contains=@spExpression,spTernaryIf
 
 "" catch errors caused by wrong parenthesis
@@ -203,18 +203,18 @@ if main_syntax == "spidersript"
 endif
 
 if g:spidersript_conceal == 1
-  syntax match   spFunction       /\<func\>/ nextgroup=spFuncName,spFuncArgs skipwhite conceal cchar=ƒ
+  syntax match   spfntion       /\<fn\>/ nextgroup=spfnName,spfnArgs skipwhite conceal cchar=ƒ
 else
-  syntax match   spFunction       /\<func\>/ nextgroup=spFuncName,spFuncArgs skipwhite
+  syntax match   spfntion       /\<fn\>/ nextgroup=spfnName,spfnArgs skipwhite
 endif
 
-syntax match   spFuncName       contained /\<[a-zA-Z_$][0-9a-zA-Z_$]*/ nextgroup=spFuncArgs skipwhite
-syntax region  spFuncArgs       contained matchgroup=spFuncParens start='(' end=')' contains=spFuncArgCommas,spFuncArgRest nextgroup=spFuncBlock keepend skipwhite skipempty
-syntax match   spFuncArgCommas  contained ','
-syntax match   spFuncArgRest    contained /\%(\.\.\.[a-zA-Z_$][0-9a-zA-Z_$]*\))/
-syntax keyword spArgsObj        arguments contained containedin=spFuncBlock
+syntax match   spfnName       contained /\<[a-zA-Z_$][0-9a-zA-Z_$]*/ nextgroup=spfnArgs skipwhite
+syntax region  spfnArgs       contained matchgroup=spfnParens start='(' end=')' contains=spfnArgCommas,spfnArgRest nextgroup=spfnBlock keepend skipwhite skipempty
+syntax match   spfnArgCommas  contained ','
+syntax match   spfnArgRest    contained /\%(\.\.\.[a-zA-Z_$][0-9a-zA-Z_$]*\))/
+syntax keyword spArgsObj        arguments contained containedin=spfnBlock
 
-syntax match spArrowFunction /(->|=>)/
+syntax match spArrowfntion /(->|=>)/
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
@@ -226,15 +226,15 @@ if version >= 508 || !exists("did_spidersript_syn_inits")
   else
     command -nargs=+ HiLink hi def link <args>
   endif
-  HiLink spFuncArgRest          Special
+  HiLink spfnArgRest          Special
   HiLink spComment              Comment
   HiLink spLineComment          Comment
   HiLink spEnvComment           PreProc
   HiLink spDocComment           Comment
   HiLink spCommentTodo          Todo
-  HiLink spCvsTag               Function
+  HiLink spCvsTag               fntion
   HiLink spDocTags              Special
-  HiLink spDocSeeTag            Function
+  HiLink spDocSeeTag            fntion
   HiLink spDocType              Type
   HiLink spDocTypeNoParam       Type
   HiLink spDocParam             Label
@@ -260,9 +260,9 @@ if version >= 508 || !exists("did_spidersript_syn_inits")
   HiLink spStatement            Statement
   HiLink spException            Exception
   HiLink spKeyword              Keyword
-  HiLink spArrowFunction        Type
-  HiLink spFunction             Type
-  HiLink spFuncName             Function
+  HiLink spArrowfntion        Type
+  HiLink spfntion             Type
+  HiLink spfnName             fntion
   HiLink spArgsObj              Special
   HiLink spError                Error
   HiLink spParensError          Error
@@ -283,8 +283,8 @@ if version >= 508 || !exists("did_spidersript_syn_inits")
   HiLink spBrackets             Noise
   HiLink spParens               Noise
   HiLink spBraces               Noise
-  HiLink spFuncBraces           Noise
-  HiLink spFuncParens           Noise
+  HiLink spfnBraces           Noise
+  HiLink spfnParens           Noise
   HiLink spSpecial              Special
   HiLink spTemplateVar          Special
   HiLink spGlobalObjects        Special
@@ -295,11 +295,11 @@ if version >= 508 || !exists("did_spidersript_syn_inits")
   HiLink spDomErrNo             Constant
   HiLink spDomNodeConsts        Constant
   HiLink spDomElemAttrs         Label
-  HiLink spDomElemFuncs         PreProc
+  HiLink spDomElemfns         PreProc
 
   HiLink spHtmlEvents           Special
   HiLink spHtmlElemAttrs        Label
-  HiLink spHtmlElemFuncs        PreProc
+  HiLink spHtmlElemfns        PreProc
 
   HiLink spCssStyles            Label
 
